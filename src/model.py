@@ -33,7 +33,8 @@ class Model(torch.nn.Module):
             for layer in layers:
                 assert not layer.check_for_nan_weights(), "weights in the provided file contain nan"
         elif is_random_init:
-            layers = self._create_random_initialized_layers(layer_width, num_hidden_layers)
+            num_layers_pytorch_notation = num_hidden_layers - 1
+            layers = self._create_random_initialized_layers(layer_width, num_layers_pytorch_notation)
         else:
             raise ValueError("Either path or layer_width and num_middle_layers must be given.")
         
